@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "GD3a7kZN4Kw=",
+  "success": true,
+  "projectFilePath": "C:\\Code\\.Net_Api\\Pet Rock Managment Sysem\\PetRockManagment\\PetRockManagment.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Sufyan Ali\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.9\\microsoft.aspnetcore.openapi.9.0.9.nupkg.sha512",
+    "C:\\Users\\Sufyan Ali\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,6 @@
+@PetRockManagment_HostAddress = http://localhost:5241
+
+GET {{PetRockManagment_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
