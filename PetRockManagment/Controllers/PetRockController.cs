@@ -52,12 +52,33 @@ namespace PetRockManagment.Controllers
         [HttpPost("/")]
         public ActionResult<PetRock> AddPetRock(PetRock newPetRock)
         {
+            //No Reasoon for this comment
             if(newPetRock == null)
                 return BadRequest();
             newPetRock.id = petRocks.Max(x => x.id) + 1;
             petRocks.Add(newPetRock);
             return CreatedAtAction(nameof(GetPetRockById), new {id = newPetRock.id}, newPetRock);
         }
-        
+        [HttpDelete("/{id}")]
+        public IActionResult DeletePetRock(int id)
+        {
+            var petRock = petRocks.FirstOrDefault(x => x.id == id);
+            if (petRock == null)
+                return NotFound();
+            petRocks.Remove(petRock);
+            return NoContent();
+        }
+        [HttpPut("/{id}")]
+        public IActionResult UpdatePetRock(int id, PetRock updatedPetRock)
+        {
+            var petRock = petRocks.FirstOrDefault(x => x.id == id);
+            if (petRock == null)
+                return NotFound();
+            petRock.name = updatedPetRock.name;
+            petRock.mood = updatedPetRock.mood;
+            petRock.clean = updatedPetRock.clean;
+            return NoContent();
+        }
     }
+    // No reason for this comment as well
 }
