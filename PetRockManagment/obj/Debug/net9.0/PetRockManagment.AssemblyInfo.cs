@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PetRockManagment")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+25029bffcd08d0ed0a3e3d7bf4ffb03fd444fbe4")]
 [assembly: System.Reflection.AssemblyProductAttribute("PetRockManagment")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PetRockManagment")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
