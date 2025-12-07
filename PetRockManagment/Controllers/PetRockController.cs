@@ -52,7 +52,6 @@ namespace PetRockManagment.Controllers
         [HttpPost("/")]
         public ActionResult<PetRock> AddPetRock(PetRock newPetRock)
         {
-            //No Reasoon for this comment
             if(newPetRock == null)
                 return BadRequest();
             newPetRock.id = petRocks.Max(x => x.id) + 1;
@@ -80,5 +79,4 @@ namespace PetRockManagment.Controllers
             return NoContent();
         }
     }
-    // No reason for this comment as well
 }
