@@ -3,79 +3,62 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PetRockManagment.Data;
 using PetRockManagment.Models;
 
 namespace PetRockManagment.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PetRockController : ControllerBase
+    public class PetRockController(PetRockDbContext context) : ControllerBase
     {
-        static private List<PetRock> petRocks = new List<PetRock>
-        {
-            new PetRock
-            {
-                id = 1,
-                name = "ben",
-                mood = "happy",
-                bath = true
-            },
-            new PetRock
-            {
-                id = 2,
-                name = "joe",
-                mood = "sad",
-                bath = false
-            },
-            new PetRock
-            {
-                id = 3,
-                name = "doey",
-                mood = "angry",
-                bath = true
-            },
-        };
+        private readonly PetRockDbContext _context = context;
 
         [HttpGet("/")]
-        public ActionResult<List<PetRock>> GetAllPetRock()
+        public async Task<ActionResult<List<PetRock>>> GetAllPetRock()
         {
-            return Ok(petRocks);
+            return Ok(await _context.PetRocks.ToListAsync());
         }
         [HttpGet("/{id}")]
-        public ActionResult<PetRock> GetPetRockById(int id)
+        public async Task<ActionResult<PetRock>> GetPetRockById(int id)
         {
-            var petRock = petRocks.FirstOrDefault(x => x.id == id);
+            var petRock = await _context.PetRocks.FindAsync(id);
             if (petRock == null)
                 return NotFound();
             return Ok(petRock);
         }
         [HttpPost("/")]
-        public ActionResult<PetRock> AddPetRock(PetRock newPetRock)
+        public async Task<ActionResult<PetRock>> AddPetRock(PetRock newPetRock)
         {
             if(newPetRock == null)
                 return BadRequest();
-            newPetRock.id = petRocks.Max(x => x.id) + 1;
-            petRocks.Add(newPetRock);
+            _context.PetRocks.Add(newPetRock);
+            await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetPetRockById), new {id = newPetRock.id}, newPetRock);
         }
         [HttpDelete("/{id}")]
-        public IActionResult DeletePetRock(int id)
+        public async Task<IActionResult> DeletePetRock(int id)
         {
-            var petRock = petRocks.FirstOrDefault(x => x.id == id);
+            var petRock = await _context.PetRocks.FindAsync(id);
             if (petRock == null)
                 return NotFound();
-            petRocks.Remove(petRock);
+            _context.PetRocks.Remove(petRock);
+            
+            await _context.SaveChangesAsync();
             return NoContent();
         }
         [HttpPut("/{id}")]
-        public IActionResult UpdatePetRock(int id, PetRock updatedPetRock)
+        public async Task<IActionResult> UpdatePetRock(int id, PetRock updatedPetRock)
         {
-            var petRock = petRocks.FirstOrDefault(x => x.id == id);
+           var petRock = await _context.PetRocks.FindAsync(id);
             if (petRock == null)
                 return NotFound();
             petRock.name = updatedPetRock.name;
             petRock.mood = updatedPetRock.mood;
             petRock.bath = updatedPetRock.bath;
+            
+            await _context.SaveChangesAsync();
             return NoContent();
         }
     }
