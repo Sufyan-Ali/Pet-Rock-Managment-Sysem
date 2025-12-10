@@ -10,7 +10,7 @@ namespace PetRockManagment.Models
         public int id { get; set; }
         public string? name { get; set; }
         public string? mood { get; set; }
-        public bool clean { get; set; }
+        public bool bath { get; set; }
 
     }
 }

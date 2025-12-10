@@ -18,21 +18,21 @@ namespace PetRockManagment.Controllers
                 id = 1,
                 name = "ben",
                 mood = "happy",
-                clean = true
+                bath = true
             },
             new PetRock
             {
                 id = 2,
                 name = "joe",
                 mood = "sad",
-                clean = false
+                bath = false
             },
             new PetRock
             {
                 id = 3,
                 name = "doey",
                 mood = "angry",
-                clean = true
+                bath = true
             },
         };
 
@@ -75,7 +75,7 @@ namespace PetRockManagment.Controllers
                 return NotFound();
             petRock.name = updatedPetRock.name;
             petRock.mood = updatedPetRock.mood;
-            petRock.clean = updatedPetRock.clean;
+            petRock.bath = updatedPetRock.bath;
             return NoContent();
         }
     }
